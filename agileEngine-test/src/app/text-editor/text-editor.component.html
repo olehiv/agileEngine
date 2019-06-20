@@ -1,0 +1,25 @@
+<div class="text-editor">
+  <div class="text-editor__options">
+    <div *ngFor="let item of buttons;" class="text-option"
+         (click)="bClick(item.action);"
+         [ngClass]="{'selected': item.selected}">
+      <span class="text-option__title">
+        {{item.title}}
+      </span>
+    </div>
+  </div>
+  <div class="text-editor__area">
+    <iframe name="textEditorFrame" id="textEditorFrame" contenteditable="true"></iframe>
+    <div class="tooltip"
+         *ngIf="(currentSelectedText && currentSelectedText.length > 0) && (synonyms && synonyms.length > 0)"
+         [style.position]="'absolute'"
+         [style.top]="tooltipTop"
+         [style.left]="tooltipLeft">
+      <ul class="tooltip__list">
+        <li  *ngFor="let item of synonyms;">
+          {{item.word}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
